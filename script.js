@@ -36,22 +36,22 @@ const roles = [
     "title": "Collared"
   }, {
     "color": "#FF0000",
-    "title": "Petplay Owner"
+    "title": "Owner"
   }, {
     "color": "#EFA9FF",
-    "title": "Brat!"
+    "title": "Brat"
   }, {
     "color": "#F58BCB",
-    "title": "Slut"
+    "title": "Person"
   }, {
     "color": "#7D1818",
-    "title": "Brat Tamer"
+    "title": "Tamer"
   }, {
     "color": "#48CAB7",
-    "title": "Slut owner"
+    "title": "Owner"
   }, {
     "color": "#3498DB",
-    "title": "Kink-Curious"
+    "title": "Curious"
   }, {
     "color": "#AD0808",
     "title": "Predator"

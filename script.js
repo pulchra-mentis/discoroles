@@ -1,4 +1,4 @@
-import ColorComparator from "https://cdn.skypack.dev/color@4.0.1";
+import Color from "https://cdn.skypack.dev/color@4.0.1";
 // Create a new color picker instance
 // https://iro.js.org/guide.html#getting-started
 

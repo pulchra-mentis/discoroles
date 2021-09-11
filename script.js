@@ -42,7 +42,7 @@ const roles = [
     "title": "Brat"
   }, {
     "color": "#F58BCB",
-    "title": "Person"
+    "title": "Interesting"
   }, {
     "color": "#7D1818",
     "title": "Tamer"

@@ -64,3 +64,9 @@ body {
 .link a {
   color: MediumSlateBlue;
 }
+
+.colorEntry {
+  border: 4px #fff;
+  border-radius: .5em;
+  padding: 4px;
+}

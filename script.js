@@ -21,9 +21,51 @@ const gradeContrast = contrast => {
 // Replace this with a Javascript object representing:
 // role colors (color)
 // and role names (title)
-const roles = [{
-  "color": "#FFFFFF",
-  "title": "Test" }];
+const roles = [
+  {
+    "color": "#992D22",
+    "title": "Dominant"
+  }, {
+    "color": "#9B59B6",
+    "title": "Submissive"
+  }, {
+    "color": "#F1C40F",
+    "title": "Switch"
+  }, {
+    "color": "#E91E63",
+    "title": "Collared"
+  }, {
+    "color": "#FF0000",
+    "title": "Petplay Owner"
+  }, {
+    "color": "#EFA9FF",
+    "title": "Brat!"
+  }, {
+    "color": "#F58BCB",
+    "title": "Slut"
+  }, {
+    "color": "#7D1818",
+    "title": "Brat Tamer"
+  }, {
+    "color": "#48CAB7",
+    "title": "Slut owner"
+  }, {
+    "color": "#3498DB",
+    "title": "Kink-Curious"
+  }, {
+    "color": "#AD0808",
+    "title": "Predator"
+  }, {
+    "color": "#5291F8",
+    "title": "Prey"
+  }, {
+    "color": "#8A8A8A",
+    "title": "Bot"
+  }, {
+    "color": "#E91E63",
+    "title": "Princess"
+  }
+];
 
 
 const colorPicker = new iro.ColorPicker(".colorPicker", {

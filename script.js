@@ -4,7 +4,7 @@ import ColorComparator from "https://cdn.skypack.dev/color@4.0.1";
 
 // Defaults to Discord dark mode background color
 // Use #FFFFFF for light mode
-const comparison = ColorComparator('#36393F');
+const comparison = Color('#36393F');
 
 const gradeContrast = contrast => {
   if (contrast >= 7) {
@@ -82,10 +82,12 @@ const colorPicker = new iro.ColorPicker(".colorPicker", {
 const colorList = document.getElementById("colorList");
 const activeColor = document.getElementById("activeColor");
 
-function setColor(colorIndex) {
+const setColor = (colorIndex) => {
   // setActiveColor expects the color index!
   colorPicker.setActiveColor(colorIndex);
-}
+};
+
+window.setColor = setColor;
 
 // https://iro.js.org/guide.html#color-picker-events
 colorPicker.on(["mount", "color:change"], function () {
@@ -93,7 +95,7 @@ colorPicker.on(["mount", "color:change"], function () {
   colorPicker.colors.forEach(color => {
     const index = color.index;
     const hexString = color.hexString;
-    const contrast = ColorComparator(hexString).contrast(comparison);
+    const contrast = Color(hexString).contrast(comparison);
     colorList.innerHTML += `
       <li onClick="setColor(${index})">
         <div class="colorEntry">
@@ -109,7 +111,7 @@ colorPicker.on(["mount", "color:setActive", "color:change"], function () {
   // colorPicker.color is always the active color
   const index = colorPicker.color.index;
   const hexString = colorPicker.color.hexString;
-  const contrast = ColorComparator(hexString).contrast(comparison);
+  const contrast = Color(hexString).contrast(comparison);
   activeColor.innerHTML = `
     <div class="swatch" style="background: ${hexString}"></div>
     <span>${roles[index].title}: ${hexString} - ${gradeContrast(contrast)} (${contrast.toFixed(2)})</span>

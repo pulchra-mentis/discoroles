@@ -95,9 +95,11 @@ colorPicker.on(["mount", "color:change"], function () {
     const hexString = color.hexString;
     const contrast = Color(hexString).contrast(comparison);
     colorList.innerHTML += `
-      <li onClick="setColor(${roles[index].color})" class="colorEntry">
-        <div class="swatch" style="background: ${hexString}"></div>
-        <span>${roles[index].title}: ${hexString} - ${gradeContrast(contrast)} (${contrast.toFixed(2)})</span>
+      <li onClick="setColor(${index})">
+        <div class="colorEntry">
+          <div class="swatch" style="background: ${hexString}"></div>
+          <span>${roles[index].title}: ${hexString} - ${gradeContrast(contrast)} (${contrast.toFixed(2)})</span>
+        </div>
       </li>
     `;
   });

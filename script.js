@@ -116,12 +116,12 @@ const downloadRoles = () => {
     const contrast = ColorComparator(hexString).contrast(comparison);
     const grade = gradeContrast(contrast);
 
-    roles.push(color.map((color) => ({
+    roles.push({
       color: hexString,
       title: roles[index].title,
       contrast: contrast,
       grade: grade
-    })));
+    });
   });
   const a = document.createElement('a');
   a.href = URL.createObjectURL( new Blob([JSON.stringify(roles, undefined, 2)], {type: 'text/json'}) );

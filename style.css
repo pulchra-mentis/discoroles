@@ -14,7 +14,16 @@ body {
 }
 .wrap .third {
   width: 33%;
-  padding: 32px 0;
+  padding: 32px 0px;
+}
+
+@media (max-width: 767px) {
+  .wrap {
+    flex-direction: column;
+  }
+  .wrap .third {
+    width: auto;
+  }
 }
 
 .title {

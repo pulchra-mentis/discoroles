@@ -80,3 +80,7 @@ body {
   border-radius: .5em;
   padding: 4px;
 }
+
+#label-for-stringified-json {
+  display: block;
+}

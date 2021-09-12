@@ -113,7 +113,7 @@ const downloadRoles = () => {
   a.href = URL.createObjectURL( new Blob([JSON.stringify(roles, undefined, 2)], {type: 'text/json'}) );
   a.download = 'roles.json';
   a.click();
-  a.hidden = true;
+  a.remove();
 };
 
 window.downloadRoles = downloadRoles;

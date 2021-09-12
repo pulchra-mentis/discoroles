@@ -124,7 +124,7 @@ const downloadRoles = () => {
     });
   });
   const a = document.createElement('a');
-  a.href = URL.createObjectURL( new Blob([JSON.stringify(roles, undefined, 2)], {type: 'text/json'}) );
+  a.href = URL.createObjectURL( new Blob([JSON.stringify(newRoles, undefined, 2)], {type: 'text/json'}) );
   a.download = 'roles.json';
   a.click();
   a.remove();

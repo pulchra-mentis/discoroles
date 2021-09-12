@@ -109,6 +109,20 @@ const setRoles = () => {
 window.setRoles = setRoles;
 
 const downloadRoles = () => {
+  roles = [];
+  colorPicker.colors.forEach(color => {
+    const index = color.index;
+    const hexString = color.hexString;
+    const contrast = ColorComparator(hexString).contrast(comparison);
+    const grade = gradeContrast(contrast);
+
+    roles.push(color.map((color) => ({
+      color: hexString,
+      title: roles[index].title,
+      contrast: contrast,
+      grade: grade
+    })));
+  });
   const a = document.createElement('a');
   a.href = URL.createObjectURL( new Blob([JSON.stringify(roles, undefined, 2)], {type: 'text/json'}) );
   a.download = 'roles.json';

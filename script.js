@@ -1,12 +1,12 @@
-import Color from "https://cdn.skypack.dev/color@4.0.1";
+import ColorComparator from "https://cdn.skypack.dev/color@4.0.1";
 // Create a new color picker instance
 // https://iro.js.org/guide.html#getting-started
 
 // Defaults to Discord dark mode background color
 // Use #FFFFFF for light mode
-const comparison = Color('#36393F');
+const comparison = ColorComparator('#36393F');
 
-const gradeContrast = contrast => {
+const gradeContrast = (contrast) => {
   if (contrast >= 7) {
     return 'Excellent';
   } else if (contrast >= 4.5) {
@@ -21,58 +21,17 @@ const gradeContrast = contrast => {
 // Replace this with a Javascript object representing:
 // role colors (color)
 // and role names (title)
-const roles = [
+let roles = [
   {
     "color": "#992D22",
-    "title": "Dominant"
-  }, {
-    "color": "#9B59B6",
-    "title": "Submissive"
-  }, {
-    "color": "#F1C40F",
-    "title": "Switch"
-  }, {
-    "color": "#E91E63",
-    "title": "Collared"
-  }, {
-    "color": "#FF0000",
-    "title": "Owner"
-  }, {
-    "color": "#EFA9FF",
-    "title": "Brat"
-  }, {
-    "color": "#F58BCB",
-    "title": "Interesting"
-  }, {
-    "color": "#7D1818",
-    "title": "Tamer"
-  }, {
-    "color": "#48CAB7",
-    "title": "Owner"
-  }, {
-    "color": "#3498DB",
-    "title": "Curious"
-  }, {
-    "color": "#AD0808",
-    "title": "Predator"
-  }, {
-    "color": "#5291F8",
-    "title": "Prey"
-  }, {
-    "color": "#8A8A8A",
-    "title": "Bot"
-  }, {
-    "color": "#E91E63",
-    "title": "Princess"
+    "title": "Test"
   }
 ];
-
 
 const colorPicker = new iro.ColorPicker(".colorPicker", {
   // color picker options
   // Option guide: https://iro.js.org/guide.html#color-picker-options
   width: 260,
-  // Pure red, green and blue
   colors: roles.map(role => role.color),
   handleRadius: 9,
   borderWidth: 1,
@@ -95,7 +54,7 @@ colorPicker.on(["mount", "color:change"], function () {
   colorPicker.colors.forEach(color => {
     const index = color.index;
     const hexString = color.hexString;
-    const contrast = Color(hexString).contrast(comparison);
+    const contrast = ColorComparator(hexString).contrast(comparison);
     colorList.innerHTML += `
       <li onClick="setColor(${index})">
         <div class="colorEntry">
@@ -111,9 +70,64 @@ colorPicker.on(["mount", "color:setActive", "color:change"], function () {
   // colorPicker.color is always the active color
   const index = colorPicker.color.index;
   const hexString = colorPicker.color.hexString;
-  const contrast = Color(hexString).contrast(comparison);
+  const contrast = ColorComparator(hexString).contrast(comparison);
   activeColor.innerHTML = `
     <div class="swatch" style="background: ${hexString}"></div>
     <span>${roles[index].title}: ${hexString} - ${gradeContrast(contrast)} (${contrast.toFixed(2)})</span>
   `;
 });
+
+const setRoles = () => {
+  roles = JSON.parse(document.getElementById('stringified-json').value);
+  console.log(roles);
+  colorPicker.setColors(roles.map(role => role.color));
+  
+  const index = colorPicker.color.index;
+  const hexString = colorPicker.color.hexString;
+  const contrast = ColorComparator(hexString).contrast(comparison);
+  activeColor.innerHTML = `
+    <div class="swatch" style="background: ${hexString}"></div>
+    <span>${roles[index].title}: ${hexString} - ${gradeContrast(contrast)} (${contrast.toFixed(2)})</span>
+  `;
+
+  colorList.innerHTML = '';
+  colorPicker.colors.forEach(color => {
+    const index = color.index;
+    const hexString = color.hexString;
+    const contrast = ColorComparator(hexString).contrast(comparison);
+    colorList.innerHTML += `
+      <li onClick="setColor(${index})">
+        <div class="colorEntry">
+          <div class="swatch" style="background: ${hexString}"></div>
+          <span>${roles[index].title}: ${hexString} - ${gradeContrast(contrast)} (${contrast.toFixed(2)})</span>
+        </div>
+      </li>
+    `;
+  });
+};
+
+window.setRoles = setRoles;
+
+const downloadRoles = () => {
+  let newRoles = [];
+  colorPicker.colors.forEach(color => {
+    const index = color.index;
+    const hexString = color.hexString;
+    const contrast = ColorComparator(hexString).contrast(comparison);
+    const grade = gradeContrast(contrast);
+
+    newRoles.push({
+      color: hexString,
+      title: roles[index].title,
+      contrast: contrast,
+      grade: grade
+    });
+  });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL( new Blob([JSON.stringify(newRoles, undefined, 2)], {type: 'text/json'}) );
+  a.download = 'roles.json';
+  a.click();
+  a.remove();
+};
+
+window.downloadRoles = downloadRoles;

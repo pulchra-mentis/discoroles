@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <title>Discord Roles Contrast Grader</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="./style.css">
-
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -14,13 +13,21 @@
   </head>
   <body>
     <div class="wrap">
-      <div class="half">
+      <div class="third">
         <div class="colorPicker"></div>
         <span>Active Color:</span>
         <div id="activeColor"></div>
       </div>
-      <div class="half">
+      <div class="third">
         <ul id="colorList"></ul>
+      </div>
+      <div class="third">
+        <textarea id="stringified-json" rows="21" cols="42">
+[{
+  "color": "#992D22",
+  "title": "Test"
+}]</textarea>
+        <button type="button" onclick="setRoles()">Initialize Colors</button>
       </div>
     </div>
     <script src='https://cdn.jsdelivr.net/npm/@jaames/iro@beta/dist/iro.min.js'></script>

@@ -109,14 +109,14 @@ const setRoles = () => {
 window.setRoles = setRoles;
 
 const downloadRoles = () => {
-  rolesNew = [];
+  let newRoles = [];
   colorPicker.colors.forEach(color => {
     const index = color.index;
     const hexString = color.hexString;
     const contrast = ColorComparator(hexString).contrast(comparison);
     const grade = gradeContrast(contrast);
 
-    rolesNew.push({
+    newRoles.push({
       color: hexString,
       title: roles[index].title,
       contrast: contrast,
